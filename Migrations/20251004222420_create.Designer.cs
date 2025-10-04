@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HackYeah_Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251004220149_create")]
+    [Migration("20251004222420_create")]
     partial class create
     {
         /// <inheritdoc />
