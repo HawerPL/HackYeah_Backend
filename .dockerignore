@@ -1,0 +1,7 @@
+Data/*.db*
+Migrations/*
+.dockerignore
+Dockerfile
+.git
+.gitignore
+bin

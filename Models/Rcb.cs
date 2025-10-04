@@ -9,8 +9,10 @@ namespace HackYeah_Backend.Models
         public string?  Description { get; set; }
         public DateTime EventDate { get; set; }
         public string? ImageUrl { get; set; }
+        public string? ArticleUrl { get; set; }
         public ICollection<LocationRcb> Locations { get; set; } = new List<LocationRcb>();
         public ICollection<TagRcb> Tags { get; set; } = new List<TagRcb>();
+
     }
 
     public class LocationRcb

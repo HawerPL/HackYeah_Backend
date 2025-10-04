@@ -60,11 +60,80 @@ namespace HackYeah_Backend.Migrations
                     b.ToTable("LocationsRcb");
                 });
 
+            modelBuilder.Entity("HackYeah_Backend.Models.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Question");
+                });
+
+            modelBuilder.Entity("HackYeah_Backend.Models.QuestionAnswer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Answer")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("QuestionAnswers");
+                });
+
+            modelBuilder.Entity("HackYeah_Backend.Models.QuestionCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("QuestionId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("questionCategories");
+                });
+
             modelBuilder.Entity("HackYeah_Backend.Models.Rcb", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("ArticleUrl")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
@@ -114,6 +183,24 @@ namespace HackYeah_Backend.Migrations
                     b.Navigation("Rcb");
                 });
 
+            modelBuilder.Entity("HackYeah_Backend.Models.QuestionAnswer", b =>
+                {
+                    b.HasOne("HackYeah_Backend.Models.Question", "Question")
+                        .WithMany("Answers")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Question");
+                });
+
+            modelBuilder.Entity("HackYeah_Backend.Models.QuestionCategory", b =>
+                {
+                    b.HasOne("HackYeah_Backend.Models.Question", null)
+                        .WithMany("Categories")
+                        .HasForeignKey("QuestionId");
+                });
+
             modelBuilder.Entity("HackYeah_Backend.Models.TagRcb", b =>
                 {
                     b.HasOne("HackYeah_Backend.Models.Rcb", "Rcb")
@@ -123,6 +210,13 @@ namespace HackYeah_Backend.Migrations
                         .IsRequired();
 
                     b.Navigation("Rcb");
+                });
+
+            modelBuilder.Entity("HackYeah_Backend.Models.Question", b =>
+                {
+                    b.Navigation("Answers");
+
+                    b.Navigation("Categories");
                 });
 
             modelBuilder.Entity("HackYeah_Backend.Models.Rcb", b =>
