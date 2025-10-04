@@ -18,15 +18,15 @@ namespace HackYeah_Backend.Controllers
 
 
 
-        // GET: api/bunker/coordinates/{lon}/{lat}
-        [HttpGet("coordinates/{lon}/{lat}")]
-        public async Task<ActionResult<IEnumerable<Bunker>>> Get(float lon, float lat)
+        // GET: api/bunker/coordinates/{lon}/{lat}/{z}
+        [HttpGet("coordinates/{lon}/{lat}/{z}")]
+        public async Task<ActionResult<IEnumerable<Bunker>>> Get(double lon, double lat, double z)
         {
             var bunkers = await _dbContext.Bunkers.ToListAsync();
 
             var selectedBunkers = bunkers.Where(b =>
-                b.x >= lon - lon * 0.5 && b.x <= lon + lon * 0.5 &&
-                b.y >= lat - lat * 0.5 && b.y <= lat + 20
+                b.x >= lon - lon * z && b.x <= lon + lon * z &&
+                b.y >= lat - lat * z && b.y <= lat + z
             ).ToList();
 
 
