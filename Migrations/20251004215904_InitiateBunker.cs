@@ -5,7 +5,7 @@
 namespace HackYeah_Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class InitiateBunkerTalbe : Migration
+    public partial class InitiateBunker : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

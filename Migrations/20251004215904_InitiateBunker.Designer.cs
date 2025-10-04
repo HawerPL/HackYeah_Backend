@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HackYeah_Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251004202629_InitiateBunkerTalbe")]
-    partial class InitiateBunkerTalbe
+    [Migration("20251004215904_InitiateBunker")]
+    partial class InitiateBunker
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

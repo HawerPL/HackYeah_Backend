@@ -29,6 +29,9 @@ namespace HackYeah_Backend.Data
             modelBuilder.Entity<TagRcb>().HasData(
 
             );
+            modelBuilder.Entity<Bunker>().HasData(
+
+            );
         }
     }
 }
