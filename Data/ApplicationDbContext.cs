@@ -16,6 +16,11 @@ namespace HackYeah_Backend.Data
         public DbSet<LocationRcb> LocationsRcb { get; set; }
         public DbSet<TagRcb> TagsRcb { get; set; }
 
+        public DbSet<Question> Question { get; set; }
+        public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
+        public DbSet<QuestionCategory> questionCategories  { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
