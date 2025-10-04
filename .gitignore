@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 Data/*.db*
 Data/*.db
+/Data/hackyeah.db
+/Data/hackyeah.db-shm
+/Data/hackyeah.db-wal
