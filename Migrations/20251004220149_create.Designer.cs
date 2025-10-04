@@ -11,14 +11,37 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HackYeah_Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251004215507_Bunker")]
-    partial class Bunker
+    [Migration("20251004220149_create")]
+    partial class create
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.9");
+
+            modelBuilder.Entity("HackYeah_Backend.Models.Bunker", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Building")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<float>("x")
+                        .HasColumnType("REAL");
+
+                    b.Property<float>("y")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bunkers");
+                });
 
             modelBuilder.Entity("HackYeah_Backend.Models.LocationRcb", b =>
                 {
