@@ -7,5 +7,7 @@
         public string?  Description { get; set; }
         public DateTime EventDate { get; set; }
         public string? ImageUrl { get; set; }
+        public List<string>? Location { get; set; }
+        public List<string>? Tags { get; set; }
     }
 }
