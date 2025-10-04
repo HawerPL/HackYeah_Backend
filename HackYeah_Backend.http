@@ -1,0 +1,6 @@
+@HackYeah_Backend_HostAddress = http://localhost:5100
+
+GET {{HackYeah_Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
