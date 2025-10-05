@@ -18,9 +18,6 @@ namespace HackYeah_Backend.Data
         public DbSet<Bunker> Bunkers { get; set; }
 
         public DbSet<Question> Question { get; set; }
-        public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
-        public DbSet<QuestionCategory> questionCategories  { get; set; }
-
         public DbSet<RoleCategory> roleCategories { get; set; }
         public DbSet<RoleCharacteristic> roleCharacteristics { get; set; }
         public DbSet<Answer> answers { get; set; }
