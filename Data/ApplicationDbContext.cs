@@ -21,6 +21,10 @@ namespace HackYeah_Backend.Data
         public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
         public DbSet<QuestionCategory> questionCategories  { get; set; }
 
+        public DbSet<RoleCategory> roleCategories { get; set; }
+        public DbSet<RoleCharacteristic> roleCharacteristics { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -3146,6 +3150,62 @@ namespace HackYeah_Backend.Data
                 new Bunker { Id = 3109, x = 54.1693924, y = 22.6218982, Building = null, Name = null },
                 new Bunker { Id = 3110, x = 54.1822754, y = 22.6257594, Building = null, Name = "Bunkier wojskowy" },
                 new Bunker { Id = 3111, x = 54.3398233, y = 22.7723905, Building = null, Name = "Bunkier Wobały" }
+            );
+
+            // Role Category
+            modelBuilder.Entity<RoleCategory>().HasData(
+                new RoleCategory { Id = 1, Name = "Gospodarstwo Domowe" },
+                new RoleCategory { Id = 2, Name = "Opiekun" },
+                new RoleCategory { Id = 3, Name = "Wolontariusz" },
+                new RoleCategory { Id = 4, Name = "Wykwalifikowany" },
+                new RoleCategory { Id = 5, Name = "Pracownik Kluczowy" },
+                new RoleCategory { Id = 6, Name = "Członek Organizacji" }
+            );
+
+            // Role characteristic
+            modelBuilder.Entity<RoleCharacteristic>().HasData(
+                // 2A
+                new RoleCharacteristic { Id = 1, Name = "Samotny Prepper", CategoryId = 1 },
+                new RoleCharacteristic { Id = 2, Name = "Rodzina Nuklearna", CategoryId = 1 },
+                new RoleCharacteristic { Id = 3, Name = "Gospodarstwo Wielopokoleniowe", CategoryId = 1 },
+                new RoleCharacteristic { Id = 4, Name = "Mieszkaniec Miasta", CategoryId = 1 },
+                new RoleCharacteristic { Id = 5, Name = "Mieszkaniec Wsi", CategoryId = 1 },
+
+                // 2B
+                new RoleCharacteristic { Id = 6, Name = "Rodzic Małych Dzieci (0-12)", CategoryId = 2 },
+                new RoleCharacteristic { Id = 7, Name = "Rodzic Nastolatków (13-18)", CategoryId = 2 },
+                new RoleCharacteristic { Id = 8, Name = "Opiekun Starszych Rodziców", CategoryId = 2 },
+                new RoleCharacteristic { Id = 9, Name = "Opiekun Osoby Niepełnosprawnej", CategoryId = 2 },
+                new RoleCharacteristic { Id = 10, Name = "Właściciel Zwierząt", CategoryId = 2 },
+
+                // 2C
+                new RoleCharacteristic { Id = 11, Name = "Organizator Sąsiedzki", CategoryId = 3 },
+                new RoleCharacteristic { Id = 12, Name = "Aktywny Uczestnik", CategoryId = 3 },
+                new RoleCharacteristic { Id = 13, Name = "Obrońca Informacji", CategoryId = 3 },
+                new RoleCharacteristic { Id = 14, Name = "Łącznik Zasobów", CategoryId = 3 },
+
+                // 2D
+                new RoleCharacteristic { Id = 15, Name = "Profesjonalista Medyczny", CategoryId = 4 },
+                new RoleCharacteristic { Id = 16, Name = "Inżynier/Technik", CategoryId = 4 },
+                new RoleCharacteristic { Id = 17, Name = "Rzemieślnik", CategoryId = 4 },
+                new RoleCharacteristic { Id = 18, Name = "Specjalista IT/Komunikacji", CategoryId = 4 },
+                new RoleCharacteristic { Id = 19, Name = "Nauczyciel/Trener", CategoryId = 4 },
+                new RoleCharacteristic { Id = 20, Name = "Logistyk", CategoryId = 4 },
+
+                // 2E
+                new RoleCharacteristic { Id = 21, Name = "Pracownik Ochrony Zdrowia", CategoryId = 5 },
+                new RoleCharacteristic { Id = 22, Name = "Pracownik Sektora Energetycznego", CategoryId = 5 },
+                new RoleCharacteristic { Id = 23, Name = "Pracownik Wodociągów/Sanitacji", CategoryId = 5 },
+                new RoleCharacteristic { Id = 24, Name = "Pracownik Produkcji/Dystrybucji Żywności", CategoryId = 5 },
+                new RoleCharacteristic { Id = 25, Name = "Pracownik Transportu/Logistyki", CategoryId = 5 },
+                new RoleCharacteristic { Id = 26, Name = "Pracownik Komunikacji/Mediów", CategoryId = 5 },
+
+                // 2F
+                new RoleCharacteristic { Id = 27, Name = "Ochotnik Straży Pożarnej (OSP)", CategoryId = 6 },
+                new RoleCharacteristic { Id = 28, Name = "Członek Koła Łowieckiego", CategoryId = 6 },
+                new RoleCharacteristic { Id = 29, Name = "Radioamator", CategoryId = 6 },
+                new RoleCharacteristic { Id = 30, Name = "Lider Organizacji Obywatelskiej/Religijnej", CategoryId = 6 },
+                new RoleCharacteristic { Id = 31, Name = "Członek Klubu Sportowego/Organizacji Młodzieżowej", CategoryId = 6 }
             );
         }
     }
