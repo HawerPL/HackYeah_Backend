@@ -23,6 +23,12 @@ namespace HackYeah_Backend.Data
 
         public DbSet<RoleCategory> roleCategories { get; set; }
         public DbSet<RoleCharacteristic> roleCharacteristics { get; set; }
+        public DbSet<Answer> answers { get; set; }
+        public DbSet<Form> forms { get; set; }
+        public DbSet<Instructions> instructions { get; set; }
+        public DbSet<Question> questions { get; set; }
+
+        public DbSet<User> users { get; set; }
 
 
 

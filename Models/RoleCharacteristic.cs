@@ -12,5 +12,7 @@ namespace HackYeah_Backend.Models
 
         public int CategoryId { get; set; }
         public RoleCategory RoleCategory { get; set; }
+        public List<Instructions> Instructions { get; set; }
+
     }
 }
