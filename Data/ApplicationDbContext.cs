@@ -18,54 +18,31 @@ namespace HackYeah_Backend.Data
         public DbSet<Bunker> Bunkers { get; set; }
 
         public DbSet<Question> Question { get; set; }
+        public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
+        public DbSet<QuestionCategory> questionCategories  { get; set; }
+
+        public DbSet<RoleCategory> roleCategories { get; set; }
+        public DbSet<RoleCharacteristic> roleCharacteristics { get; set; }
+        public DbSet<Answer> answers { get; set; }
+        public DbSet<Form> forms { get; set; }
+        public DbSet<Instructions> instructions { get; set; }
+        public DbSet<Question> questions { get; set; }
+
+        public DbSet<User> users { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Rcb>().HasData(
-            new Rcb
-            {
-                Id = 1,
-                Title = "Alert RCB - szczepionka na lisy przeciw wściekliźnie w województwie lubelskim (3-5.10)",
-                Description = "Uwaga! W dniach 3-5.10 będzie zrzucana szczepionka dla lisów przeciw wściekliźnie. Nie dotykaj kapsułki i nie dopuszczaj do niej zwierząt domowych!",
-                EventDate = new DateTime(2025, 10, 2),
-                ImageUrl = "https://www.gov.pl/photo/format/a5985200-c6d2-4418-97f7-7cc062694178/resolution/1920x810",
-                ArticleUrl = "https://www.gov.pl/web/rcb/alert-rcb---szczepionka-na-lisy-przeciw-wsciekliznie-w-wojewodztwie-lubelskim"
-            },
-            new Rcb
-            {
-                Id = 2,
-                Title = "Alert RCB - szczepionka na lisy przeciw wściekliźnie w województwie podkarpackim (2-11.10)",
-                Description = "Uwaga! W dniach 2-11.10 będzie zrzucana szczepionka dla lisów przeciw wściekliźnie. Nie dotykaj kapsułki i nie dopuszczaj do niej zwierząt domowych!",
-                EventDate = new DateTime(2025, 10, 1),
-                ImageUrl = "https://www.gov.pl/photo/format/187bfdf1-20ce-4713-b0ca-9e306961951a/resolution/1920x810",
-                ArticleUrl = "https://www.gov.pl/web/rcb/alert-rcb--szczepionka-na-lisy-przeciw-wsciekliznie-w-wojewodztwie-podkarpackim-2-1110"
-            },
-            new Rcb
-            {
-                Id = 3,
-                Title = "Alert RCB - woda niezdatna do spożycia z wodociągu Dziesław (29.09)",
-                Description = "Uwaga! Woda niezdatna do spożycia z wodociągu sieciowego Dziesław. Śledź lokalne komunikaty.",
-                EventDate = new DateTime(2025, 9, 29),
-                ImageUrl = "https://www.gov.pl/photo/format/6ad9aa2b-a92f-4edc-b459-3ff97fc9f35c/resolution/1920x810",
-                ArticleUrl = "https://www.gov.pl/web/rcb/alert-rcb--woda-niezdatna-do-spozycia-z-wodociagu-dzieslaw-2909"
-            }
-            );
 
+            );
             modelBuilder.Entity<LocationRcb>().HasData(
-                new LocationRcb { Id = 1, Name = "mazowieckie", RcbId = 1 },
-                new LocationRcb { Id = 2, Name = "podkarpacie", RcbId = 2 },
-                new LocationRcb { Id = 3, Name = "dzieslaw", RcbId = 3 }
-            );
 
+            );
             modelBuilder.Entity<TagRcb>().HasData(
-                new TagRcb { Id = 1, Name = "szczepionka", RcbId = 1 },
-                new TagRcb { Id = 2, Name = "zwierzęta", RcbId = 1 },
-                new TagRcb { Id = 3, Name = "szczepionka", RcbId = 2 },
-                new TagRcb { Id = 4, Name = "zwierzęta", RcbId = 2 },
-                new TagRcb { Id = 5, Name = "woda", RcbId = 3 },
-                new TagRcb { Id = 6, Name = "chroby", RcbId = 3 }
+
             );
             modelBuilder.Entity<Bunker>().HasData(
                 new Bunker { Id = 1, x = 49.7637644, y = 18.6195388, Building = null, Name = "Polski schron bojowy wz. 39" },
@@ -3181,8 +3158,60 @@ namespace HackYeah_Backend.Data
                 new Bunker { Id = 3111, x = 54.3398233, y = 22.7723905, Building = null, Name = "Bunkier Wobały" }
             );
 
-            modelBuilder.Entity<Question>().HasData(
-                new Question { Id = 1, Title = "płeć", Description = "Jaką masz płeć?", Order = 1 }
+            // Role Category
+            modelBuilder.Entity<RoleCategory>().HasData(
+                new RoleCategory { Id = 1, Name = "Gospodarstwo Domowe" },
+                new RoleCategory { Id = 2, Name = "Opiekun" },
+                new RoleCategory { Id = 3, Name = "Wolontariusz" },
+                new RoleCategory { Id = 4, Name = "Wykwalifikowany" },
+                new RoleCategory { Id = 5, Name = "Pracownik Kluczowy" },
+                new RoleCategory { Id = 6, Name = "Członek Organizacji" }
+            );
+
+            // Role characteristic
+            modelBuilder.Entity<RoleCharacteristic>().HasData(
+                // 2A
+                new RoleCharacteristic { Id = 1, Name = "Samotny Prepper", CategoryId = 1 },
+                new RoleCharacteristic { Id = 2, Name = "Rodzina Nuklearna", CategoryId = 1 },
+                new RoleCharacteristic { Id = 3, Name = "Gospodarstwo Wielopokoleniowe", CategoryId = 1 },
+                new RoleCharacteristic { Id = 4, Name = "Mieszkaniec Miasta", CategoryId = 1 },
+                new RoleCharacteristic { Id = 5, Name = "Mieszkaniec Wsi", CategoryId = 1 },
+
+                // 2B
+                new RoleCharacteristic { Id = 6, Name = "Rodzic Małych Dzieci (0-12)", CategoryId = 2 },
+                new RoleCharacteristic { Id = 7, Name = "Rodzic Nastolatków (13-18)", CategoryId = 2 },
+                new RoleCharacteristic { Id = 8, Name = "Opiekun Starszych Rodziców", CategoryId = 2 },
+                new RoleCharacteristic { Id = 9, Name = "Opiekun Osoby Niepełnosprawnej", CategoryId = 2 },
+                new RoleCharacteristic { Id = 10, Name = "Właściciel Zwierząt", CategoryId = 2 },
+
+                // 2C
+                new RoleCharacteristic { Id = 11, Name = "Organizator Sąsiedzki", CategoryId = 3 },
+                new RoleCharacteristic { Id = 12, Name = "Aktywny Uczestnik", CategoryId = 3 },
+                new RoleCharacteristic { Id = 13, Name = "Obrońca Informacji", CategoryId = 3 },
+                new RoleCharacteristic { Id = 14, Name = "Łącznik Zasobów", CategoryId = 3 },
+
+                // 2D
+                new RoleCharacteristic { Id = 15, Name = "Profesjonalista Medyczny", CategoryId = 4 },
+                new RoleCharacteristic { Id = 16, Name = "Inżynier/Technik", CategoryId = 4 },
+                new RoleCharacteristic { Id = 17, Name = "Rzemieślnik", CategoryId = 4 },
+                new RoleCharacteristic { Id = 18, Name = "Specjalista IT/Komunikacji", CategoryId = 4 },
+                new RoleCharacteristic { Id = 19, Name = "Nauczyciel/Trener", CategoryId = 4 },
+                new RoleCharacteristic { Id = 20, Name = "Logistyk", CategoryId = 4 },
+
+                // 2E
+                new RoleCharacteristic { Id = 21, Name = "Pracownik Ochrony Zdrowia", CategoryId = 5 },
+                new RoleCharacteristic { Id = 22, Name = "Pracownik Sektora Energetycznego", CategoryId = 5 },
+                new RoleCharacteristic { Id = 23, Name = "Pracownik Wodociągów/Sanitacji", CategoryId = 5 },
+                new RoleCharacteristic { Id = 24, Name = "Pracownik Produkcji/Dystrybucji Żywności", CategoryId = 5 },
+                new RoleCharacteristic { Id = 25, Name = "Pracownik Transportu/Logistyki", CategoryId = 5 },
+                new RoleCharacteristic { Id = 26, Name = "Pracownik Komunikacji/Mediów", CategoryId = 5 },
+
+                // 2F
+                new RoleCharacteristic { Id = 27, Name = "Ochotnik Straży Pożarnej (OSP)", CategoryId = 6 },
+                new RoleCharacteristic { Id = 28, Name = "Członek Koła Łowieckiego", CategoryId = 6 },
+                new RoleCharacteristic { Id = 29, Name = "Radioamator", CategoryId = 6 },
+                new RoleCharacteristic { Id = 30, Name = "Lider Organizacji Obywatelskiej/Religijnej", CategoryId = 6 },
+                new RoleCharacteristic { Id = 31, Name = "Członek Klubu Sportowego/Organizacji Młodzieżowej", CategoryId = 6 }
             );
         }
     }
