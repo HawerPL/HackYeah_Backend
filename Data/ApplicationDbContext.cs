@@ -18,21 +18,54 @@ namespace HackYeah_Backend.Data
         public DbSet<Bunker> Bunkers { get; set; }
 
         public DbSet<Question> Question { get; set; }
-        public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
-        public DbSet<QuestionCategory> questionCategories  { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Rcb>().HasData(
-
+            new Rcb
+            {
+                Id = 1,
+                Title = "Alert RCB - szczepionka na lisy przeciw wściekliźnie w województwie lubelskim (3-5.10)",
+                Description = "Uwaga! W dniach 3-5.10 będzie zrzucana szczepionka dla lisów przeciw wściekliźnie. Nie dotykaj kapsułki i nie dopuszczaj do niej zwierząt domowych!",
+                EventDate = new DateTime(2025, 10, 2),
+                ImageUrl = "https://www.gov.pl/photo/format/a5985200-c6d2-4418-97f7-7cc062694178/resolution/1920x810",
+                ArticleUrl = "https://www.gov.pl/web/rcb/alert-rcb---szczepionka-na-lisy-przeciw-wsciekliznie-w-wojewodztwie-lubelskim"
+            },
+            new Rcb
+            {
+                Id = 2,
+                Title = "Alert RCB - szczepionka na lisy przeciw wściekliźnie w województwie podkarpackim (2-11.10)",
+                Description = "Uwaga! W dniach 2-11.10 będzie zrzucana szczepionka dla lisów przeciw wściekliźnie. Nie dotykaj kapsułki i nie dopuszczaj do niej zwierząt domowych!",
+                EventDate = new DateTime(2025, 10, 1),
+                ImageUrl = "https://www.gov.pl/photo/format/187bfdf1-20ce-4713-b0ca-9e306961951a/resolution/1920x810",
+                ArticleUrl = "https://www.gov.pl/web/rcb/alert-rcb--szczepionka-na-lisy-przeciw-wsciekliznie-w-wojewodztwie-podkarpackim-2-1110"
+            },
+            new Rcb
+            {
+                Id = 3,
+                Title = "Alert RCB - woda niezdatna do spożycia z wodociągu Dziesław (29.09)",
+                Description = "Uwaga! Woda niezdatna do spożycia z wodociągu sieciowego Dziesław. Śledź lokalne komunikaty.",
+                EventDate = new DateTime(2025, 9, 29),
+                ImageUrl = "https://www.gov.pl/photo/format/6ad9aa2b-a92f-4edc-b459-3ff97fc9f35c/resolution/1920x810",
+                ArticleUrl = "https://www.gov.pl/web/rcb/alert-rcb--woda-niezdatna-do-spozycia-z-wodociagu-dzieslaw-2909"
+            }
             );
+
             modelBuilder.Entity<LocationRcb>().HasData(
-
+                new LocationRcb { Id = 1, Name = "mazowieckie", RcbId = 1 },
+                new LocationRcb { Id = 2, Name = "podkarpacie", RcbId = 2 },
+                new LocationRcb { Id = 3, Name = "dzieslaw", RcbId = 3 }
             );
-            modelBuilder.Entity<TagRcb>().HasData(
 
+            modelBuilder.Entity<TagRcb>().HasData(
+                new TagRcb { Id = 1, Name = "szczepionka", RcbId = 1 },
+                new TagRcb { Id = 2, Name = "zwierzęta", RcbId = 1 },
+                new TagRcb { Id = 3, Name = "szczepionka", RcbId = 2 },
+                new TagRcb { Id = 4, Name = "zwierzęta", RcbId = 2 },
+                new TagRcb { Id = 5, Name = "woda", RcbId = 3 },
+                new TagRcb { Id = 6, Name = "chroby", RcbId = 3 }
             );
             modelBuilder.Entity<Bunker>().HasData(
                 new Bunker { Id = 1, x = 49.7637644, y = 18.6195388, Building = null, Name = "Polski schron bojowy wz. 39" },
@@ -3146,6 +3179,10 @@ namespace HackYeah_Backend.Data
                 new Bunker { Id = 3109, x = 54.1693924, y = 22.6218982, Building = null, Name = null },
                 new Bunker { Id = 3110, x = 54.1822754, y = 22.6257594, Building = null, Name = "Bunkier wojskowy" },
                 new Bunker { Id = 3111, x = 54.3398233, y = 22.7723905, Building = null, Name = "Bunkier Wobały" }
+            );
+
+            modelBuilder.Entity<Question>().HasData(
+                new Question { Id = 1, Title = "płeć", Description = "Jaką masz płeć?", Order = 1 }
             );
         }
     }
